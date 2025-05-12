@@ -1,0 +1,23 @@
+{
+  "name": "slides",
+  "private": true,
+  "scripts": {
+    "build": "echo 'package level build is disabled'",
+    "dev": "slidev --open",
+    "export": "slidev export chapters/*.md"
+  },
+  "slidev": {
+    "addons": [
+      "slidev-component-poll"
+    ]
+  },
+  "dependencies": {
+    "@iconify-json/logos": "^1.2.4",
+    "@slidev/cli": "^51.6.0",
+    "@slidev/theme-apple-basic": "^0.25.1",
+    "@slidev/theme-default": "latest",
+    "@slidev/theme-seriph": "latest",
+    "slidev-component-poll": "^3.0.0",
+    "vue": "^3.5.13"
+  }
+}

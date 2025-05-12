@@ -1,0 +1,9 @@
+{
+  "name": "calculator",
+  "version": "1.0.0",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --outDir ../../dist/demo/calculator"
+  }
+}

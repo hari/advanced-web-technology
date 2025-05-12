@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  <style>
+   
+    /* Base styles and reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+        "Helvetica Neue", sans-serif;
+      background: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
+      color: #212529;
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: -0.025em;
+    }
+
+    header p {
+      max-width: 600px;
+      margin: 0 auto;
+      color: #6c757d;
+      font-size: 1.1rem;
+    }
+
+    /* Search container */
+    .search-container {
+      margin: 0 auto 2rem auto;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+      padding: 4px 12px;
+      display: flex;
+      background-color: white;
+      border-radius: 12px;
+      max-width: 600px;
+      width: 100%; 
+      transition: border-color 0.2s, box-shadow 0.2s;
+      border: 1px solid #dee2e6;
+      position: relative;
+    }
+
+    .search-container:focus-within {
+      border-color: #4a86e8;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .search-label {
+      font-weight: 600;
+      color: #495057;
+      border-right: 1px solid #dee2e6;
+      padding-right: 0.5rem;
+    }
+
+    #search-input {
+      flex: 1;
+      border: 0 none;
+      outline: none;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+    }
+
+    /* Grid layout */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 1.5rem;
+    }
+
+    /* Grid item */
+    .grid-item {
+      background-color: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.03);
+      transition: all 0.3s ease;
+      position: relative;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .grid-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    .grid-item > div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #adb5bd;
+      font-size: 0.75rem;
+    }
+
+    .grid-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Title */
+    .grid-item h2 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #4a86e8;
+      line-clamp: 2;
+    }
+
+    /* Responsive grid */
+    @media (min-width: 576px) {
+      .grid-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 768px) {
+      .grid-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      h1 {
+        font-size: 3rem;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .grid-container {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      body {
+        padding: 3rem 2rem;
+      }
+    }
+
+    /* No results message */
+    .no-results {
+      text-align: center;
+      padding: 2rem;
+      color: #6c757d;
+      font-size: 1.1rem;
+      grid-column: 1 / -1;
+    }
+
+    #grid-item-template {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <fieldset class="search-container">
+      <label for="search-input" class="search-label">Search</label>
+      <span class="search-input-divider"></span>
+      <input 
+        type="text" 
+        id="search-input" 
+        placeholder="Type to filter {{title}}..." 
+        aria-label="Search {{title}}..."
+      >
+    </fieldset>
+    
+    <div id="grid-container" class="grid-container">
+    </div>
+    <a href="" id="grid-item-template" class="grid-item">
+      <div>
+        <span class="day"></span>
+        <span class="index"></span>
+      </div>
+      <h2></h2>
+    </a>
+  </main>
+  
+  <script>
+    // Initial array of items
+    const items = [];
+
+    const gridItemTemplate = document.getElementById('grid-item-template');
+    // Function to render grid items based on filter
+    function renderGrid(filterTerm = "") {
+      const gridContainer = document.getElementById("grid-container")
+
+      // Clear any existing content
+      gridContainer.innerHTML = ""
+
+      // Filter items based on search term
+      const filteredItems = filterTerm
+        ? items.filter((item) => item.title.toLowerCase().includes(filterTerm.toLowerCase()))
+        : items
+
+      // Check if there are any matching items
+      if (filteredItems.length === 0) {
+        const noResults = document.createElement("div")
+        noResults.className = "no-results"
+        noResults.textContent = "No matching items found. Try a different search term."
+        gridContainer.appendChild(noResults)
+        return
+      }
+
+      // Create and append grid items
+      filteredItems.forEach((item) => {
+        const gridItem = gridItemTemplate.cloneNode(true)
+        gridItem.className = "grid-item"
+        gridItem.id = item.slug
+
+        const title = gridItem.querySelector("h2")
+        title.textContent = item.title
+
+        const day = gridItem.querySelector(".day")
+        day.textContent = item.day
+
+        const index = gridItem.querySelector(".index")
+        index.textContent = item.index
+        gridItem.href = item.href || `/slides/${item.slug}/`
+        gridItem.classList.remove("hidden")
+        gridContainer.appendChild(gridItem)
+      })
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      renderGrid()
+
+      const searchInput = document.getElementById("search-input")
+
+      searchInput.addEventListener("input", (e) => {
+        const searchTerm = e.target.value.trim()
+        renderGrid(searchTerm)
+      })
+    })
+  </script>
+</body>
+</html>

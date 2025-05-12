@@ -1,0 +1,21 @@
+{
+  "name": "awt",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "slides"
+  ],
+  "scripts": {
+    "build": "pnpm -r run build && node scripts/deploy.js",
+    "build:client": "pnpm --filter frontend build",
+    "slides": "pnpm --filter slides dev",
+    "slides:export": "pnpm --filter slides export"
+  },
+  "packageManager": "pnpm@9.2.0+sha1.886364ebd6dae009284bebc56ed4296bb6dd557a",
+  "dependencies": {
+    "p-limit": "^6.2.0",
+    "vite": "^5.4.1"
+  }
+}
