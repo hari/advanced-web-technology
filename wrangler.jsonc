@@ -1,0 +1,8 @@
+{
+  "compatibility_date": "2025-05-10",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "name": "advanced-web-technology",
+  "pages_build_output_dir": "dist"
+}
