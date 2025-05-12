@@ -6,4 +6,4 @@ dist
 .remote-assets
 components.d.ts
 *.docx
-.temp/*
+.temp
