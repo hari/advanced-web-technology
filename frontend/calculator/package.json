@@ -4,6 +4,6 @@
   "main": "index.html",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --outDir ../../dist/demo/calculator"
+    "build": "vite build --outDir ../../dist/projects/calculator"
   }
 }

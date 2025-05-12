@@ -132,6 +132,10 @@
       line-clamp: 2;
     }
 
+    .day {
+      color: #10b981;
+    }
+
     /* Responsive grid */
     @media (min-width: 576px) {
       .grid-container {
@@ -211,7 +215,7 @@
 
       // Filter items based on search term
       const filteredItems = filterTerm
-        ? items.filter((item) => item.title.toLowerCase().includes(filterTerm.toLowerCase()))
+        ? items.filter((item) => item.title.toLowerCase().includes(filterTerm) || item.slug.toLowerCase().includes(filterTerm))
         : items
 
       // Check if there are any matching items

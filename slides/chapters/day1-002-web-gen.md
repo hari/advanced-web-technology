@@ -112,12 +112,46 @@ graph TD
 ---
 layout: center
 ---
-
 # Core Web Protocols
 
-- HTTP / HTTPS: request-response protocol
-- WebSockets: real-time, two-way communication
-- REST: API design using HTTP verbs and endpoints
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+<div>
+
+**Web & Communication**
+<ul class="!list-disc !pl-5 space-y-1">
+  <li><strong>HTTP/HTTPS:</strong> Request-response for web resources (Secure)</li>
+  <li><strong>WebSockets:</strong> Persistent, real-time, two-way connections</li>
+  <li><strong>DNS:</strong> Translates domain names to IP addresses</li>
+</ul>
+
+</div>
+<div>
+
+**Foundation & Transfer**
+<ul class="!list-disc !pl-5 space-y-1">
+  <li><strong>TCP/IP:</strong> Foundational internet protocol suite</li>
+  <li><strong>FTP:</strong> File Transfer Protocol</li>
+</ul>
+
+</div>
+<div>
+
+**Security**
+<ul class="!list-disc !pl-5 space-y-1">
+  <li><strong>SSL/TLS:</strong> Cryptographic protocols for secure connections (TLS supersedes SSL)</li>
+</ul>
+
+</div>
+<div>
+
+**Email**
+<ul class="!list-disc !pl-5 space-y-1">
+  <li><strong>SMTP:</strong> Sending email</li>
+  <li><strong>IMAP:</strong> Retrieving email</li>
+</ul>
+
+</div>
+</div>
 
 ---
 layout: center

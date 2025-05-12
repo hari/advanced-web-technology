@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Web Technologies</title>
+  <style>
+    :root {
+      --primary-color: #0071e3;
+      --secondary-color: #f8f9fa;
+      --text-color: #212529;
+      --light-text: #6c757d;
+      --card-bg: #ffffff;
+      --shadow: rgba(0, 0, 0, 0.1);
+      --button-hover: rgba(0, 0, 0, 0.05);
+      --border-color: rgba(0, 0, 0, 0.1);
+      --terminal-bg: #e9ecef;
+      --terminal-text: #495057;
+      --link-hover-color: #0056b3;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      background-color: var(--secondary-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 550px;
+      width: 100%;
+      text-align: center;
+      padding: 3rem 2rem;
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+    }
+
+    .toolkit-badge {
+      display: inline-flex;
+      align-items: center;
+      color: var(--light-text);
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .toolkit-badge svg {
+      margin-right: 0.5rem;
+      color: var(--primary-color);
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      line-height: 1;
+      margin-bottom: 1.75rem;
+      font-weight: 600;
+      color: var(--text-color);
+      letter-spacing: -0.01em;
+    }
+  
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .link-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem 1.25rem;
+      background-color: transparent;
+      color: var(--text-color);
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+    }
+
+    .link-button:hover {
+      background-color: var(--button-hover);
+      color: var(--text-color);
+      border-color: rgba(0, 0, 0, 0.15);
+    }
+
+    .link-button svg {
+      margin-right: 0.6rem;
+      width: 16px;
+      height: 16px;
+      color: var(--light-text);
+      transition: color 0.2s ease;
+    }
+
+    .link-button:hover svg {
+        color: var(--text-color);
+    }
+
+    .footer {
+      margin-top: 2.5rem;
+      font-size: 0.8rem;
+      color: var(--light-text);
+    }
+
+    .footer a {
+      color: var(--primary-color);
+      text-decoration: underline;
+      text-decoration-color: rgba(0, 113, 227, 0.5);
+      transition: color 0.2s ease, text-decoration-color 0.2s ease;
+    }
+
+    .footer a:hover {
+      color: var(--link-hover-color);
+      text-decoration-color: rgba(0, 86, 179, 0.8);
+    }
+
+    @media (min-width: 640px) {
+      .links {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      .container {
+        padding: 3.5rem 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <div class="toolkit-badge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+        <path d="M2 17l10 5 10-5"></path>
+        <path d="M2 12l10 5 10-5"></path>
+      </svg>
+      COURSE TOOLKIT
+    </div>
+    <h1>Advanced Web Technologies</h1>
+    <nav class="links">
+      <a href="/slides" class="link-button">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+          <line x1="8" y1="12" x2="16" y2="12"></line>
+          <line x1="12" y1="8" x2="12" y2="16"></line>
+        </svg>
+        Browse Slides
+      </a>
+      <a href="/projects" class="link-button projects">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
+        View Projects
+      </a>
+    </nav>
+    <footer class="footer">
+      The source code for this website is available on <a href="https://github.com/hari/advanced-web-technology">GitHub</a>
+    </footer>
+  </main>
+</body>
+</html>

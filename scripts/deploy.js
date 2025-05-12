@@ -2,6 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const { exec } = require('child_process');
 
+// Here, we inject the EndScreen.vue component into the slides and run builds in parallel.
+
 // Use dynamic import for p-limit (ESM module)
 let pLimit;
 (async () => {
@@ -101,18 +103,18 @@ import EndScreen from '../components/EndScreen.vue'
     );
   }
 
-  function createDemoIndex() {
-    const outDir = path.resolve(__dirname, '../dist/demo');
+  function createProjectsIndex() {
+    const outDir = path.resolve(__dirname, '../dist/projects');
     let template = fs.readFileSync(
       path.join(__dirname, 'template.html'),
       'utf-8'
     );
-    const variables = [{ key: 'title', value: 'AWT Demo' }];
+    const variables = [{ key: 'title', value: 'AWT Projects' }];
     for (const variable of variables) {
       template = template.replaceAll(`{{${variable.key}}}`, variable.value);
     }
 
-    const demoItems = JSON.stringify(
+    const projectItems = JSON.stringify(
       fs
         .readdirSync(path.resolve(__dirname, '../frontend'))
         .map((item, index) => {
@@ -121,14 +123,14 @@ import EndScreen from '../components/EndScreen.vue'
             index: `#${index + 1}`,
             title: item,
             slug: item,
-            href: `/demo/${item}`,
+            href: `/projects/${item}`,
           };
         })
     );
 
     fs.writeFileSync(
       path.join(outDir, 'index.html'),
-      template.replace('const items = [];', `const items = ${demoItems};`)
+      template.replace('const items = [];', `const items = ${projectItems};`)
     );
   }
 
@@ -136,7 +138,11 @@ import EndScreen from '../components/EndScreen.vue'
     fs.rmSync(tmpDir, { recursive: true, force: true });
 
     createSlidesIndex();
-    createDemoIndex();
+    createProjectsIndex();
+    fs.copyFileSync(
+      path.join(__dirname, './index.html'),
+      path.join(__dirname, '../dist/index.html')
+    );
     console.log('🎉 All slides built successfully.');
   });
 })();
