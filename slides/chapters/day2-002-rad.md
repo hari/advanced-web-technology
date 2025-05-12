@@ -220,6 +220,3 @@ layout: center
   <div class="px-3 py-2 bg-orange-100 rounded-lg border border-orange-600 hover:bg-orange-200 transition-colors">Rapid Prototyping</div>
   <div class="px-3 py-2 bg-orange-100 rounded-lg border border-orange-600 hover:bg-orange-200 transition-colors">Incremental Development</div>
 </div>
-
----
-

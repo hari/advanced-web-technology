@@ -283,4 +283,4 @@ class: text-center
 <div class="p-6 bg-blue-100 rounded-lg max-w-md mx-auto mb-8 border border-blue-600">
   <em>This is how the magic begins...</em>
 </div>
----
+
