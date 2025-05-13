@@ -181,6 +181,66 @@ layout: center
 - API-driven communication
 - Based on patterns like MVC
 - Includes monoliths and microservices
+- Other architectures: Serverless, SPA, JAMStack, Layered Architecture, etc.
+
+---
+layout: center
+---
+
+# Other Architectures
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-6 text-sm mb-2">
+  <div class="p-3 bg-purple-100 rounded-lg border border-purple-600">
+    <h3 class="text-sm! font-bold flex mb-1 items-center gap-1"><div class="i-carbon-application-web text-purple-700"></div>SPA (Single Page App)</h3>
+    <ul class="text-xs">
+      <li>Single HTML page load</li>
+      <li>Dynamic content updates</li>
+      <li>Rich user experience</li>
+      <li>Faster after initial load</li>
+      <li>Can be complex to build</li>
+      <li>SEO challenges (historically)</li>
+    </ul>
+  </div>
+  
+  <div class="p-3 bg-teal-100 rounded-lg border border-teal-600">
+    <h3 class="text-sm! font-bold flex mb-1 items-center gap-1"><div class="i-carbon-function text-teal-700"></div>Serverless</h3>
+    <ul class="text-xs">
+      <li>No server management</li>
+      <li>Pay-per-use model</li>
+      <li>Automatic scaling</li>
+      <li>FaaS (e.g., AWS Lambda)</li>
+      <li>Reduced operational cost</li>
+      <li>Potential vendor lock-in</li>
+    </ul>
+  </div>
+
+  <div class="p-3 bg-orange-100 rounded-lg border border-orange-600">
+    <h3 class="text-sm! font-bold flex mb-1 items-center gap-1"><div class="i-carbon-layers text-orange-700"></div>Layered Architecture</h3>
+    <ul class="text-xs">
+      <li>Separation of concerns</li>
+      <li>Typically: Presentation, Application, Business, Data Access</li>
+      <li>Improved maintainability</li>
+      <li>Enhanced testability</li>
+      <li>Promotes reusability</li>
+      <li>Can be overly complex for small projects</li>
+    </ul>
+  </div>
+
+  <div class="p-3 bg-lime-100 rounded-lg border border-lime-600">
+    <h3 class="text-sm! font-bold flex mb-1 items-center gap-1"><div class="i-carbon-flash text-lime-700"></div>JAMstack</h3>
+    <ul class="text-xs">
+      <li>JavaScript, APIs, Markup</li>
+      <li>Pre-rendered static sites</li>
+      <li>Enhanced performance</li>
+      <li>Improved security</li>
+      <li>Scalability via CDN</li>
+      <li>Relies on client-side JS & APIs</li>
+    </ul>
+  </div>
+</div>
+
+
+> we will use most of these as we build projects
 
 ---
 layout: center
@@ -193,6 +253,7 @@ graph TD
   C[Client View] --> S[Server Controller]
   S --> M[Model]
 ```
+
 ---
 layout: center
 ---
