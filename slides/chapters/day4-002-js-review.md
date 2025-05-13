@@ -14,6 +14,8 @@ highlighter: shiki
 lineNumbers: false
 colorSchema: 'light'
 favicon: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png'
+pollSettings:
+  anonymous: true
 ---
 
 # JavaScript Review Part 2

@@ -3,7 +3,6 @@ theme: seriph
 background: #f5f5f5
 title: ExpressJS Fundamentals
 layout: center
-class: text-center
 transition: fade-out
 mdc: true
 highlighter: shiki
@@ -14,79 +13,14 @@ pollSettings:
   anonymous: true
 ---
 
-# ExpressJS Fundamentals
-
-<div class="text-lg mt-4">
-Your first <strong>backend server</strong><br>
-Let's make the computer talk back.
-</div>
-
----
-layout: center
----
-
-# What is ExpressJS?
-
-<div class="grid grid-cols-2 gap-4 mt-6">
-  <div class="p-4 bg-blue-100 rounded-lg border border-blue-600">
-    <h3 class="font-bold mb-2">Key Features</h3>
-    <ul class="space-y-1 list-disc pl-4">
-      <li>Minimal & flexible</li>
-      <li>Node.js web framework</li>
-      <li>Handles routing</li>
-      <li>Middleware support</li>
-    </ul>
-  </div>
-  
-  <div class="p-4 bg-green-100 rounded-lg border border-green-600">
-    <h3 class="font-bold mb-2">Use Cases</h3>
-    <ul class="space-y-1 list-disc pl-4">
-      <li>REST APIs</li>
-      <li>Web applications</li>
-      <li>Single-page apps</li>
-      <li>Real-time apps</li>
-    </ul>
-  </div>
-</div>
-
----
-layout: center
----
-
-# Basic Setup
-
-```bash
-npm init -y
-npm install express
-```
-
-```js
-// index.js
-const express = require('express');
-const app = express();
-
-app.use(express.json()); // Middleware for JSON
-
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
-
-app.listen(3000, () => console.log('Server running on port 3000'));
-```
-
-```bash
-node index.js
-```
-
----
-
 # Building a Quotes API
 
 ```js
 // Initial setup
 const express = require('express');
 const app = express();
-app.use(express.json());
+
+app.use(express.json()); // Middleware to parse JSON bodies
 
 // Data store
 let quotes = [
@@ -100,6 +34,8 @@ app.get('/quotes', (req, res) => {
 });
 ```
 
+---
+layout: center
 ---
 
 # Write API
@@ -268,9 +204,11 @@ layout: center
 # Terms to Know
 
 <div class="flex flex-wrap gap-2">
-  <div class="px-3 py-2 bg-blue-100 rounded-lg border border-blue-600 hover:bg-blue-200 transition-colors">Express</div>
+  <div class="px-3 py-2 bg-blue-100 rounded-lg border border-blue-600 hover:bg-blue-200 transition-colors">JSON</div>
   <div class="px-3 py-2 bg-blue-100 rounded-lg border border-blue-600 hover:bg-blue-200 transition-colors">Middleware</div>
-  <div class="px-3 py-2 bg-blue-100 rounded-lg border border-blue-600 hover:bg-blue-200 transition-colors">Routing</div>
+  <div class="px-3 py-2 bg-blue-100 rounded-lg border border-blue-600 hover:bg-blue-200 transition-colors">Payload</div>
+  <div class="px-3 py-2 bg-green-100 rounded-lg border border-green-600 hover:bg-green-200 transition-colors">Routing</div>
+  <div class="px-3 py-2 bg-green-100 rounded-lg border border-green-600 hover:bg-green-200 transition-colors">Parsing</div>
   <div class="px-3 py-2 bg-green-100 rounded-lg border border-green-600 hover:bg-green-200 transition-colors">REST</div>
   <div class="px-3 py-2 bg-green-100 rounded-lg border border-green-600 hover:bg-green-200 transition-colors">Endpoints</div>
   <div class="px-3 py-2 bg-purple-100 rounded-lg border border-purple-600 hover:bg-purple-200 transition-colors">HTTP Methods</div>
