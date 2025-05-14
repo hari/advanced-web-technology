@@ -63,13 +63,13 @@ npm install express
 ```js
 // index.js
 const express = require('express');
-const app = express();
+const server = express();
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
+server.get('/', (request, response) => {
+  response.send('Hello World');
 });
 
-app.listen(3000, () => console.log('Server running on port 3000'));
+server.listen(3000, () => console.log('Server running on port 3000'));
 ```
 
 ```bash
