@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "express-intro",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,8 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^5.1.0"
+    "@prisma/client": "^6.8.2",
+    "better-sqlite3": "^11.10.0",
+    "prisma": "^6.8.2"
   }
 }
