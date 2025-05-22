@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>awt.link</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #fafbfc; color: #222; margin: 0; padding: 0; }
+    header { text-align: center; }
+    nav a { margin: 0 1rem; color: #555; text-decoration: none; font-weight: 500; }
+    nav a:hover { color: #111; }
+    main { max-width: 400px; margin: 2rem auto; background: #fff; border-radius: 16px; box-shadow: 0 2px 16px #0001; padding: 2rem; }
+    .profile-avatar { width: 72px; height: 72px; border-radius: 50%; background: #eee; }
+    .links-list { list-style: none; padding: 0; margin: 2rem 0 1rem 0; }
+    .links-list li { margin: 0.5rem 0; display: flex; gap: 0.5rem; align-items: center; }
+    .links-list li a.link-title { flex: 1; text-decoration: none; }
+     textarea { width: 100%; border-radius: 8px; border: 1px solid #ddd; padding: 0.5rem; font-family: inherit; margin-bottom: 1rem; }
+    .link-form button { background: #222; color: #fff; border: none; border-radius: 8px; padding: 0.5rem 1.5rem; font-size: 1rem; cursor: pointer; }
+    .link-form button:hover { background: #444; }
+    .link-form { display: flex; flex-direction: column; max-width: 100%; gap: 0.75rem; box-sizing: border-box; }
+    .link-form input { border-radius: 8px; border: 1px solid #ddd; padding: 0.5rem; font-family: inherit; box-sizing: border-box; }
+    .link-form button { flex: 1; }
+    .profile-header { display: flex; gap: 1rem }
+    .profile-header h2 { margin: 0; }
+    .profile-header-text { display: flex; box-sizing: border-box; position: relative; justify-content: start; flex-direction: column; gap: 0.5rem; flex: 1}
+    .profile-bio { resize: none; width: 100%; box-sizing: border-box; }
+    .cancel-link { margin: 0 auto; display: block; color:#888; text-decoration: none; text-align: center; padding-top: 0.75rem; }
+    .cancel-link:hover { color:#444; }
+    .link-form-row { display: flex; gap: 0.5rem; }
+    .link-form input, .link-form button {
+      height: 40px;
+    }
+    .link-form-row input:first-child { width: 40px; text-align: center; aspect-ratio: 1/1; }
+    .link-form-row input:last-child { flex: 1; }
+    .message { text-align: center; border-radius: 8px; padding: 0.5rem; border: 1px solid var(--color); color: var(--color); margin-bottom: 1.5rem; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><a href="/" style="text-decoration: none; color: inherit;">awt.link</a></h1>
+    <nav>
+      <a href="/<%= user.username %>">Public View</a>
+      <a href="/auth/logout">Logout</a>
+    </nav>
+  </header>
+  <main>
+    <% if (error) { %>
+      <p class="message" style="--color:#e74c3c" onclick="this.remove()"><%= error %></p>
+    <% } %>
+    <% if (success) { %>
+      <p class="message" style="--color:#27ae60" onclick="this.remove()"><%= success %></p>
+    <% } %>
+    <div class="profile-header">
+      <img class="profile-avatar" src="https://api.dicebear.com/7.x/thumbs/svg?seed=<%= user.username %>" alt="avatar">
+      <div class="profile-header-text">
+        <h2>@<%= user.username %></h2>
+        <form method="POST" action="/profile">
+          <input type="hidden" name="_method" value="PUT">
+          <textarea class="profile-bio" name="bio" onblur="this.form.submit()" placeholder="Add a bio..."><%= user.bio %></textarea>
+        </form>
+      </div>
+    </div>
+
+    <script>
+
+      const siteMappings = {
+        'github.com': { title: 'GitHub', logo: '🐙', brandColor: '#24292e' },
+        'gitlab.com': { title: 'GitLab', logo: '🦊', brandColor: '#FC6D26' },
+        'facebook.com': { title: 'Facebook', logo: '👥', brandColor: '#1877F2' },
+        'instagram.com': { title: 'Instagram', logo: '📸', brandColor: '#E4405F' },
+        'snapchat.com': { title: 'Snapchat', logo: '👻', brandColor: '#FFFC00' },
+        'twitter.com': { title: 'X (Twitter)', logo: '𝕏', brandColor: '#000000' },
+        'x.com': { title: 'X (Twitter)', logo: '𝕏', brandColor: '#000000' },
+        'linkedin.com': { title: 'LinkedIn', logo: '💼', brandColor: '#0A66C2' },
+        'youtube.com': { title: 'YouTube', logo: '🎥', brandColor: '#FF0000' },
+        'tiktok.com': { title: 'TikTok', logo: '🎵', brandColor: '#000000' },
+        'reddit.com': { title: 'Reddit', logo: '🤖', brandColor: '#FF4500' }
+      };
+
+      function setPreview(input) {
+        const url = input.value?.replace("www.", "");
+        if (!url?.trim()) {
+          return;
+        }
+
+        if (!url.startsWith('http')) {
+          input.value = 'https://' + url;
+        }
+
+        const parsedUrl = new URL(url);
+        const hostname = parsedUrl.hostname;
+        const siteInfo = siteMappings[hostname];
+        if (siteInfo) {
+          const iconInput = input.parentElement.querySelector('input[name="icon"]');
+          const titleInput = input.parentElement.querySelector('input[name="title"]');
+          if (iconInput) iconInput.value = siteInfo.logo;
+          if (titleInput) titleInput.value = siteInfo.title;
+        }
+      }
+    </script>
+    <ul class="links-list">
+      <% if (typeof links !== 'undefined' && links.length > 0) { %>
+        <% links.forEach(link => { %>
+          <li>
+            <% if (link.icon) { %><span style="vertical-align: middle; line-height: 1;"><%= link.icon %></span> <% } %>
+            <a href="<%= link.url %>" target="_blank" rel="noopener" class="link-title" style="font-weight:600;"><%= link.title %></a>
+            <a href="/links/<%= link.id %>/edit" style="display:inline;margin-left:0.5rem;text-decoration: none;">✏️</a>
+            <form method="POST" action="/links/<%= link.id %>" style="display:inline">
+              <input type="hidden" name="_method" value="DELETE">
+              <button type="submit" style="margin-left:0.2rem">🗑️</button>
+            </form>
+          </li>
+        <% }) %>
+      <% } else { %>
+        <li style="color:#aaa;">No links yet. Add some!</li>
+      <% } %>
+    </ul>
+    <hr style="margin: 2rem 0; border: 1px solid #eee;" />
+    <h4>Add a new link</h4>
+    <% if (typeof editLink !== 'undefined') { %>
+      <form class="link-form" method="POST" action="/links/<%= editLink.id %>">
+        <input type="hidden" name="_method" value="PUT">
+        <input onblur="setPreview(this)" type="url" name="url" value="<%= editLink.url %>" required>
+        <div class="link-form-row">
+          <input type="text" name="icon" style="text-align: center; vertical-align: middle; line-height: 1;" value="<%= editLink.icon %>" maxlength="2">
+          <input type="text" name="title" value="<%= editLink.title %>" required>
+        </div>
+        <button type="submit">Update</button>
+      </form>
+      <a href="/profile" class="cancel-link">Cancel</a>
+    <% } else { %>
+      <form class="link-form" method="POST" action="/links">
+        <input onblur="setPreview(this)" type="url" name="url" placeholder="https://your.link" required>
+        <div class="link-form-row">
+          <input type="text" name="icon" style="text-align: center; vertical-align: middle; line-height: 1;" placeholder="🔗" maxlength="2">
+          <input type="text" name="title" placeholder="Title" required>
+        </div>
+        <button type="submit">Add</button>
+      </form>
+    <% } %>
+  </main>
+
+  <script>
+      function getBrandColor(url) {
+        if (!url) {
+          return '#000000';
+        }
+
+        const parsedUrl = new URL(url);
+        const hostname = parsedUrl.hostname.replace('www.', '');
+        const siteInfo = siteMappings[hostname];
+        return siteInfo ? siteInfo.brandColor : '#000000';
+      }
+
+      const allLinks = document.querySelectorAll('.link-title');
+      allLinks.forEach(link => {
+        link.style.color = getBrandColor(link.href);
+      });
+  </script>
+</body>
+</html> 

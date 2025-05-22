@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>awt.link</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background: #fafbfc; color: #222; margin: 0; padding: 0; }
+    header { text-align: center; }
+    nav a { margin: 0 1rem; color: #555; text-decoration: none; font-weight: 500; }
+    nav a:hover { color: #111; }
+    main { max-width: 400px; margin: 2rem auto; background: #fff; border-radius: 16px; box-shadow: 0 2px 16px #0001; padding: 2rem; }
+    .profile-avatar { width: 72px; height: 72px; border-radius: 50%; background: #eee; }
+    .links-list { list-style: none; padding: 0; margin: 2rem 0 0 0; }
+    .links-list li { margin: 0.5rem 0; }
+    .links-list a { 
+      justify-content: center; 
+      display: flex; 
+      gap: 1rem; 
+      align-items: center; 
+      border: 1px solid var(--color); 
+      padding: 0.5rem 1rem; 
+      border-radius: 32px;
+      text-decoration: none; 
+      color: var(--color);
+      font-weight: 600;
+    }
+    .links-list a:hover { opacity: 0.75; }
+    .links-list a:active { opacity: 0.5; }
+    .profile-header { display: flex; gap: 1rem }
+    .profile-header h2 { margin: 0; }
+    .profile-header-text { display: flex; box-sizing: border-box; position: relative; justify-content: start; flex-direction: column; gap: 0.5rem; flex: 1}
+    .profile-bio { margin: 1rem 0 0 0; color: #666; font-size: 0.9rem; line-height: 1.5; }
+
+    footer { max-width: 400px; margin: 2rem auto; padding: 2rem; text-align: center; }
+    footer span { color: #555; margin-bottom: 0.5rem; display: block; opacity: 0.75; font-size: 1rem; }
+    footer nav a { margin: 0 1rem; color: #555; text-decoration: none; font-weight: 500; }
+    footer nav a:hover { color: #111; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>awt.link</h1>
+    <nav>
+      <% if (user) { %>
+        <a href="/profile">Profile</a>
+        <a href="/auth/logout">Logout</a>
+      <% } %>
+    </nav>
+  </header>
+  <main>
+    <% if (profile) { %>
+      <div class="profile-header">
+        <img class="profile-avatar" src="https://api.dicebear.com/7.x/thumbs/svg?seed=<%= profile.username %>" alt="avatar">
+        <div class="profile-header-text">
+          <small><%= profile.name %></small>
+          <h2><a href="/<%= profile.username %>" style="text-decoration: none; color: inherit;">@<%= profile.username %></a></h2>
+        </div>
+      </div>
+      <% if (profile.bio?.length) { %>
+        <p class="profile-bio"><%= profile.bio %></p>
+      <% } %>
+      <hr style="margin: 2rem 0; border: 1px solid #eeea;" />
+      <ul class="links-list">
+        <% if (typeof links !== 'undefined' && links.length > 0) { %>
+          <% links.forEach(link => { %>
+            <li>
+              <a href="<%= link.url %>" target="_blank" rel="noopener">
+                <% if (link.icon) { %><span style="vertical-align: middle; line-height: 1;"><%= link.icon %></span> <% } %>
+                <span style="font-weight: 600;"><%= link.title %></span>
+              </a>
+            </li>
+          <% }) %>
+        <% } else { %>
+          <li style="color:#aaa;">No links yet.</li>
+        <% } %>
+      </ul>
+    <% } %>
+  </main>
+
+  <script>
+    const siteMappings = {
+      'github.com': { title: 'GitHub', logo: '🐙', brandColor: '#24292e' },
+      'gitlab.com': { title: 'GitLab', logo: '🦊', brandColor: '#FC6D26' },
+      'facebook.com': { title: 'Facebook', logo: '👥', brandColor: '#1877F2' },
+      'instagram.com': { title: 'Instagram', logo: '📸', brandColor: '#E4405F' },
+      'snapchat.com': { title: 'Snapchat', logo: '👻', brandColor: '#FFFC00' },
+      'twitter.com': { title: 'X (Twitter)', logo: '𝕏', brandColor: '#000000' },
+      'x.com': { title: 'X (Twitter)', logo: '𝕏', brandColor: '#000000' },
+      'linkedin.com': { title: 'LinkedIn', logo: '💼', brandColor: '#0A66C2' },
+      'youtube.com': { title: 'YouTube', logo: '🎥', brandColor: '#FF0000' },
+      'tiktok.com': { title: 'TikTok', logo: '🎵', brandColor: '#000000' },
+      'reddit.com': { title: 'Reddit', logo: '🤖', brandColor: '#FF4500' }
+    };
+
+    function getBrandColor(url) {
+      if (!url) {
+        return '#000000';
+      }
+
+      const parsedUrl = new URL(url);
+      const hostname = parsedUrl.hostname.replace('www.', '');
+      const siteInfo = siteMappings[hostname];
+      return siteInfo ? siteInfo.brandColor : '#000000';
+    }
+
+    const allLinks = document.querySelectorAll('.links-list a');
+    allLinks.forEach(link => {
+      link.style.setProperty('--color', getBrandColor(link.href));
+    });
+  </script>
+
+  <footer>
+    <% if (!user) { %>
+      <span>Want to create your own links?</span>
+      <nav>
+        <a href="/auth/login">Login</a>
+        <a href="/auth/register">Sign up</a>
+      </nav>
+    <% } %>
+  </footer>
+</body>
+</html>

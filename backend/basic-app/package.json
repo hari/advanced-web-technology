@@ -1,0 +1,31 @@
+{
+  "name": "basic-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "dotenv -e .env.test -- cross-env NODE_ENV=test pnpm prisma migrate reset --force --skip-seed && pnpm jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "connect-sqlite3": "^0.9.15",
+    "cookie-parser": "^1.4.7",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "jest": "^29.7.0",
+    "method-override": "^3.0.0",
+    "supertest": "^7.1.1"
+  },
+  "devDependencies": {
+    "@prisma/client": "^6.8.2",
+    "cross-env": "^7.0.3",
+    "dotenv-cli": "^8.0.0",
+    "nodemon": "^3.1.10",
+    "prisma": "^6.8.2"
+  }
+}
