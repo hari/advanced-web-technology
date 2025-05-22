@@ -20,9 +20,6 @@ importers:
 
   backend/basic-app:
     dependencies:
-      '@prisma/client':
-        specifier: ^6.8.2
-        version: 6.8.2(prisma@6.8.2(typescript@5.8.3))(typescript@5.8.3)
       bcryptjs:
         specifier: ^3.0.2
         version: 3.0.2
@@ -47,13 +44,13 @@ importers:
       method-override:
         specifier: ^3.0.0
         version: 3.0.0
-      prisma:
-        specifier: ^6.8.2
-        version: 6.8.2(typescript@5.8.3)
       supertest:
         specifier: ^7.1.1
         version: 7.1.1
     devDependencies:
+      '@prisma/client':
+        specifier: ^6.8.2
+        version: 6.8.2(prisma@6.8.2(typescript@5.8.3))(typescript@5.8.3)
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
@@ -63,6 +60,9 @@ importers:
       nodemon:
         specifier: ^3.1.10
         version: 3.1.10
+      prisma:
+        specifier: ^6.8.2
+        version: 6.8.2(typescript@5.8.3)
 
   backend/express-intro:
     dependencies:
