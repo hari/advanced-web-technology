@@ -10,8 +10,10 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "better-sqlite3": "^11.10.0"
+  },
+  "devDependencies": {
     "@prisma/client": "^6.8.2",
-    "better-sqlite3": "^11.10.0",
     "prisma": "^6.8.2"
   }
 }

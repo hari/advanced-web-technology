@@ -66,12 +66,13 @@ importers:
 
   backend/express-intro:
     dependencies:
-      '@prisma/client':
-        specifier: ^6.8.2
-        version: 6.8.2(prisma@6.8.2(typescript@5.8.3))(typescript@5.8.3)
       better-sqlite3:
         specifier: ^11.10.0
         version: 11.10.0
+    devDependencies:
+      '@prisma/client':
+        specifier: ^6.8.2
+        version: 6.8.2(prisma@6.8.2(typescript@5.8.3))(typescript@5.8.3)
       prisma:
         specifier: ^6.8.2
         version: 6.8.2(typescript@5.8.3)
