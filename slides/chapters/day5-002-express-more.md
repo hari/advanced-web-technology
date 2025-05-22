@@ -18,9 +18,9 @@ pollSettings:
 ```js
 // Initial setup
 const express = require('express');
-const app = express();
+const server = express();
 
-app.use(express.json()); // Middleware to parse JSON bodies
+server.use(express.json()); // Middleware to parse JSON bodies
 
 // Data store
 let quotes = [
@@ -29,8 +29,8 @@ let quotes = [
 ];
 
 // GET all quotes
-app.get('/quotes', (req, res) => {
-  res.json(quotes);
+server.get('/quotes', (request, response) => {
+  response.json(quotes);
 });
 ```
 
