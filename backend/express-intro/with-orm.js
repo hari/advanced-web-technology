@@ -19,7 +19,11 @@ app.use(cors());
 const prisma = new PrismaClient();
 
 app.get('/quotes', async (request, response) => {
-  const all = await prisma.quote.findMany();
+  const all = await prisma.quote.findMany({
+    orderBy: {
+      createdAt: 'desc',
+    },
+  });
   response.json(all);
 });
 
@@ -82,14 +86,14 @@ app.delete('/quotes/:id', async (request, response) => {
 
   try {
     const quoteExists = await prisma.quote.findUnique({
-      where: { id },
+      where: { id: parseInt(id) },
     });
     if (!quoteExists) {
       return response
         .status(404)
         .send({ error: 'Quote not found for deletion' });
     }
-    await prisma.quote.delete({ where: { id } });
+    await prisma.quote.delete({ where: { id: parseInt(id) } });
     // Emit to all connected socket clients
     io.emit('quoteDeleted', { id });
     sseClients.forEach((client) =>
@@ -113,7 +117,11 @@ io.on('connection', (socket) => {
 
   // Send all current quotes to a newly connected client
   prisma.quote
-    .findMany()
+    .findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
+    })
     .then((quotes) => {
       socket.emit('initialQuotes', quotes);
     })
@@ -136,7 +144,7 @@ io.on('connection', (socket) => {
 
   socket.on('deleteQuoteRequest', async (data, callback) => {
     try {
-      await prisma.quote.delete({ where: { id: data.id } });
+      await prisma.quote.delete({ where: { id: parseInt(data.id) } });
       io.emit('quoteDeleted', { id: data.id }); // Broadcast to all including sender
       callback({ error: null });
     } catch (error) {

@@ -48,7 +48,7 @@ export function useQuotesApi() {
         );
       }
       const addedQuote = await response.json();
-      setQuotes((prevQuotes) => [...prevQuotes, addedQuote]);
+      setQuotes((prevQuotes) => [addedQuote, ...prevQuotes]);
       return addedQuote;
     } catch (e) {
       console.error('Failed to add quote:', e);

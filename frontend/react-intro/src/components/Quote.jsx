@@ -97,11 +97,10 @@ export default function Quote() {
         </p>
         <p>
           React components re-render (update what's shown on the screen) only
-          when their
-          <strong>state</strong> or <strong>props</strong> change. Plain
-          JavaScript variables like
-          <code>quotes</code> and <code>newQuote</code> are not part of React's
-          state system. Modifying them directly does not trigger a re-render.
+          when their <strong>state</strong> or <strong>props</strong> change.
+          Plain JavaScript variables like <code>quotes</code> and{' '}
+          <code>newQuote</code> are not part of React's state system. Modifying
+          them directly does not trigger a re-render.
         </p>
         <p>
           This example highlights a core concept: for React to be "reactive" and

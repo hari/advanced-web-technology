@@ -49,9 +49,9 @@ export default function QuoteStream() {
         console.log('SSE new quote received:', newQuoteData);
         // Add if not already present (e.g. if it came from this client's POST)
         setQuotes((prevQuotes) =>
-          prevQuotes.find((q) => q.id === newQuoteData.id)
+          prevQuotes.find((q) => String(q.id) === String(newQuoteData.id))
             ? prevQuotes
-            : [...prevQuotes, newQuoteData]
+            : [newQuoteData, ...prevQuotes]
         );
       } catch (e) {
         console.error('Error parsing SSE data for new quote:', e, event.data);
@@ -64,7 +64,7 @@ export default function QuoteStream() {
         const deletedQuoteData = JSON.parse(event.data);
         console.log('SSE quote deleted event received:', deletedQuoteData);
         setQuotes((prevQuotes) =>
-          prevQuotes.filter((q) => q.id !== deletedQuoteData.id)
+          prevQuotes.filter((q) => String(q.id) !== String(deletedQuoteData.id))
         );
       } catch (e) {
         console.error(

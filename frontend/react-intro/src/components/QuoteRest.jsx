@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import Notes from './Notes';
 
 const API_URL = 'http://localhost:4444/quotes';
-const POLLING_INTERVAL = 2000; // 2 seconds
+const POLLING_INTERVAL = 5000; // 5 seconds
 
 export default function QuoteRest() {
   const [quotes, setQuotes] = useState([]);
@@ -61,7 +61,7 @@ export default function QuoteRest() {
         );
       }
       const addedQuote = await response.json();
-      setQuotes([...quotes, addedQuote]);
+      setQuotes([addedQuote, ...quotes]);
       setNewQuote('');
     } catch (e) {
       console.error('Failed to add quote:', e);
@@ -129,7 +129,7 @@ export default function QuoteRest() {
       {isLoading && quotes.length === 0 && <p>Loading quotes...</p>}
 
       {!isLoading && !error && quotes.length === 0 && (
-        <p>No quotes yet. Add one or check if the backend is connected!</p>
+        <p>No quotes yet. Add one!</p>
       )}
 
       <ul className="quote-list">

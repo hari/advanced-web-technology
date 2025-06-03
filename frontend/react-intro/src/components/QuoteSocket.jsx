@@ -45,16 +45,16 @@ export default function QuoteSocket() {
     socket.on('newQuote', (newQuoteData) => {
       console.log("Socket 'newQuote' received:", newQuoteData);
       setQuotes((prevQuotes) =>
-        prevQuotes.find((q) => q.id === newQuoteData.id)
+        prevQuotes.find((q) => String(q.id) === String(newQuoteData.id))
           ? prevQuotes
-          : [...prevQuotes, newQuoteData]
+          : [newQuoteData, ...prevQuotes]
       );
     });
 
     socket.on('quoteDeleted', (deletedQuoteData) => {
       console.log("Socket 'quoteDeleted' received:", deletedQuoteData);
       setQuotes((prevQuotes) =>
-        prevQuotes.filter((q) => q.id !== deletedQuoteData.id)
+        prevQuotes.filter((q) => String(q.id) !== String(deletedQuoteData.id))
       );
     });
 

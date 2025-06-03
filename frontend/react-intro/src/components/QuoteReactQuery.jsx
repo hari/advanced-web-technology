@@ -72,8 +72,8 @@ export default function QuoteReactQuery() {
       };
 
       queryClient.setQueryData(['quotes'], (old) => [
-        ...(old || []),
         optimisticQuote,
+        ...(old || []),
       ]);
 
       // Return a context object with the snapshotted value
