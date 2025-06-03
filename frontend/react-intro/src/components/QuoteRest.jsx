@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import Notes from './Notes';
 
 const API_URL = 'http://localhost:4444/quotes';
 const POLLING_INTERVAL = 2000; // 2 seconds
@@ -146,8 +147,7 @@ export default function QuoteRest() {
         ))}
       </ul>
 
-      <div className="student-notes">
-        <h3>Notes for Students:</h3>
+      <Notes title="About This Example (REST API)">
         <p>
           This example demonstrates fetching data from a backend API and sending
           data to it. We're using the browser's built-in <code>fetch</code> API.
@@ -242,7 +242,7 @@ export default function QuoteRest() {
           <code>fetch</code>. The complexity increases with the need to handle
           network latency, loading states, and potential errors.
         </p>
-      </div>
+      </Notes>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import io from 'socket.io-client';
+import Notes from './Notes';
 
 const SOCKET_URL = 'http://localhost:4444'; // For Socket.IO connection
 
@@ -152,8 +153,7 @@ export default function QuoteSocket() {
       </ul>
       {quotes.length === 0 && !isLoading && <p>No quotes yet. Add one!</p>}
 
-      <div className="student-notes">
-        <h3>Notes for Students:</h3>
+      <Notes title="About This Example (WebSockets)">
         <p>
           This example demonstrates real-time, bi-directional communication
           using WebSockets via the Socket.IO library.
@@ -285,7 +285,7 @@ export default function QuoteSocket() {
           Open this example in multiple browser windows. Adding or removing a
           quote in one should reflect in all others nearly instantly.
         </p>
-      </div>
+      </Notes>
     </div>
   );
 }

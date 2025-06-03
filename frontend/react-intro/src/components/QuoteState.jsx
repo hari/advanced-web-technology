@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Notes from './Notes';
 
 export default function QuoteState() {
   const [quotes, setQuotes] = useState(['State makes React reactive!']);
@@ -54,8 +55,7 @@ export default function QuoteState() {
       </ul>
       {quotes.length === 0 && <p>No quotes yet. Add one using state!</p>}
 
-      <div className="student-notes">
-        <h3>Notes for Students:</h3>
+      <Notes title="About This Example (useState)">
         <p>
           This example introduces the <code>useState</code> hook, a fundamental
           part of React for managing component state.
@@ -114,7 +114,7 @@ export default function QuoteState() {
           This is the foundation of building interactive user interfaces in
           React.
         </p>
-      </div>
+      </Notes>
     </div>
   );
 }

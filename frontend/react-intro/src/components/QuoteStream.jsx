@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import Notes from './Notes';
 
 const API_URL = 'http://localhost:4444/quotes';
 
@@ -183,8 +184,7 @@ export default function QuoteStream() {
       </ul>
       {quotes.length === 0 && !isLoading && <p>No quotes yet. Add one!</p>}
 
-      <div className="student-notes">
-        <h3>Notes for Students:</h3>
+      <Notes title="About This Example (HTTP Streaming/SSE)">
         <p>
           This example demonstrates real-time updates using HTTP Streaming,
           specifically Server-Sent Events (SSE). The backend has a{' '}
@@ -244,7 +244,8 @@ export default function QuoteStream() {
                 <code>Connection: keep-alive</code>).
               </li>
               <li>
-                It keeps a list of connected clients (<code>sseClients</code>).
+                It keeps a list of connected clients (<code>sseClients</code>
+                ).
               </li>
               <li>
                 When a new quote is POSTed to <code>/quotes</code>, the backend
@@ -299,7 +300,7 @@ export default function QuoteStream() {
           synchronization. For two-way (duplex) communication, WebSockets (shown
           in the next example) are typically used.
         </p>
-      </div>
+      </Notes>
     </div>
   );
 }

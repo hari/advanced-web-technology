@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useQuotesApi } from '../hooks/useQuotesApi';
+import Notes from './Notes';
 
 export default function QuoteCustomHook() {
   const { quotes, isLoading, error, addQuote, removeQuote, fetchQuotes } =
@@ -79,8 +80,7 @@ export default function QuoteCustomHook() {
         ))}
       </ul>
 
-      <div className="student-notes">
-        <h3>Notes for Students:</h3>
+      <Notes title="About This Example (Custom Hook)">
         <p>
           In this example, we've taken the data fetching logic, loading state
           management, and error handling from Example 3 and encapsulated it into
@@ -172,7 +172,7 @@ export default function QuoteCustomHook() {
           sharing logic. As applications grow, they become invaluable for
           keeping code DRY (Don't Repeat Yourself) and maintainable.
         </p>
-      </div>
+      </Notes>
     </div>
   );
 }

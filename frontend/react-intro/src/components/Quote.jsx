@@ -1,3 +1,4 @@
+import Notes from './Notes';
 // This example demonstrates that React doesn't automatically
 // re-render when a plain JavaScript variable is updated.
 
@@ -60,8 +61,7 @@ export default function Quote() {
       </ul>
       {quotes.length === 0 && <p>No quotes yet. Add one!</p>}
 
-      <div className="student-notes">
-        <h3>Notes for Students:</h3>
+      <Notes title="About This Example (Simple Quote)">
         <p>
           In this example, we are managing the list of quotes and the new quote
           input using simple JavaScript variables (
@@ -115,7 +115,7 @@ export default function Quote() {
           <code>console.log</code> messages showing that the JavaScript
           variables *are* indeed changing, even though the UI isn't.
         </p>
-      </div>
+      </Notes>
     </div>
   );
 }

@@ -168,30 +168,33 @@
   cursor: not-allowed;
 }
 
-.student-notes {
-  margin-top: 25px;
+.notes-content {
   padding: 15px;
   background-color: #e9f7fd;
-  border: 1px solid #bce8f1;
-  border-radius: 4px;
   font-size: 0.9em;
   line-height: 1.5;
 }
 
-.student-notes h3 {
+.notes-content p:first-child,
+.app-container h1,
+.example-container h2 {
+  margin-top: 0;
+}
+
+.notes-content h3 {
   margin-top: 0;
   color: #31708f;
 }
 
-.student-notes code {
+.notes-content code {
   background-color: #d1ecf1;
   padding: 2px 5px;
   border-radius: 3px;
   font-family: monospace;
 }
 
-.student-notes ul,
-.student-notes ol {
+.notes-content ul,
+.notes-content ol {
   margin-left: 20px;
 }
 

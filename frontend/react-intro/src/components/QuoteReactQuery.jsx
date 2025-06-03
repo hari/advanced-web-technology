@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import Notes from './Notes';
 
 const API_URL = 'http://localhost:4444/quotes';
 
@@ -94,7 +95,9 @@ export default function QuoteReactQuery() {
   const removeMutation = useMutation({
     mutationFn: removeQuoteRequest,
     onMutate: async (id) => {
-      if (!withOptimisticUpdates) return;
+      if (!withOptimisticUpdates) {
+        return;
+      }
 
       // Cancel any outgoing refetches
       await queryClient.cancelQueries({ queryKey: ['quotes'] });
@@ -125,11 +128,15 @@ export default function QuoteReactQuery() {
 
   function handleInputChange(event) {
     setNewQuoteText(event.target.value);
-    if (addMutation.isError) addMutation.reset();
+    if (addMutation.isError) {
+      addMutation.reset();
+    }
   }
 
   function handleAddQuote() {
-    if (newQuoteText.trim() === '') return;
+    if (newQuoteText.trim() === '') {
+      return;
+    }
     addMutation.mutate(newQuoteText);
     setNewQuoteText('');
   }
@@ -223,8 +230,7 @@ export default function QuoteReactQuery() {
         ))}
       </ul>
 
-      <div className="student-notes">
-        <h3>Notes for Students:</h3>
+      <Notes title="About This Example (React Query)">
         <p>
           This example replaces our custom <code>useQuotesApi</code> hook with{' '}
           <strong>React Query</strong> (now TanStack Query), a powerful library
@@ -370,7 +376,7 @@ const queryClient = new QueryClient();
             <code>QueryClientProvider</code>!
           </strong>
         </p>
-      </div>
+      </Notes>
     </div>
   );
 }
