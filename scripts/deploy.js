@@ -41,15 +41,18 @@ import EndScreen from '../components/EndScreen.vue'
   const files = fs.readdirSync(inputDir).filter((f) => f.endsWith('.md'));
 
   const slideConfig = JSON.stringify(
-    files.map((file) => {
-      const [day, index, ...name] = file.split('-');
-      return {
-        day,
-        index,
-        title: name.join(' ').replaceAll('.md', ''),
-        slug: file.replace('.md', ''),
-      };
-    })
+    files
+      .map((file) => {
+        const [day, index, ...name] = file.split('-');
+        return {
+          day,
+          sortIndex: +String(day).replace('day', ''),
+          index,
+          title: name.join(' ').replaceAll('.md', ''),
+          slug: file.replace('.md', ''),
+        };
+      })
+      .sort((a, b) => a.sortIndex - b.sortIndex)
   );
 
   fs.writeFileSync(
