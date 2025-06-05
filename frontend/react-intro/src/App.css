@@ -216,3 +216,25 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+@media (max-width: 768px) {
+  #root {
+    padding: 0;
+  }
+
+  .app-container {
+    padding: 10px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  form > * {
+    width: 100%;
+  }
+}

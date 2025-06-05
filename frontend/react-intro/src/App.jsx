@@ -10,6 +10,7 @@ import QuoteCustomHook from './components/QuoteCustomHook.jsx';
 import QuoteReactQuery from './components/QuoteReactQuery.jsx';
 import QuoteStream from './components/QuoteStream.jsx';
 import QuoteSocket from './components/QuoteSocket.jsx';
+import Practice from './components/Practice.jsx';
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ const examples = {
   example5: { name: '5: React Query', component: QuoteReactQuery },
   example6: { name: '6: SSE Stream', component: QuoteStream },
   example7: { name: '7: WebSockets', component: QuoteSocket },
+  practice: { name: 'Practice', component: Practice },
 };
 
 function App() {
