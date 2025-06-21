@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  frontend-demo:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+
+  backend-demo:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - 3000
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  postgres:
+    image: postgres:15-alpine
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - frontend-demo
+      - backend-demo
+
+volumes:
+  node_modules:
+    driver: local

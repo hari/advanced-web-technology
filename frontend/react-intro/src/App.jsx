@@ -11,6 +11,7 @@ import QuoteReactQuery from './components/QuoteReactQuery.jsx';
 import QuoteStream from './components/QuoteStream.jsx';
 import QuoteSocket from './components/QuoteSocket.jsx';
 import Practice from './components/Practice.jsx';
+import NotesApp from './NotesApp.jsx';
 
 const queryClient = new QueryClient();
 
@@ -31,6 +32,10 @@ function App() {
   );
 
   const ActiveComponent = examples[activeTab].component;
+
+  if (ActiveComponent) {
+    return <NotesApp />;
+  }
 
   return (
     <QueryClientProvider client={queryClient}>
