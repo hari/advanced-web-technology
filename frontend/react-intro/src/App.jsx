@@ -33,10 +33,6 @@ function App() {
 
   const ActiveComponent = examples[activeTab].component;
 
-  if (ActiveComponent) {
-    return <NotesApp />;
-  }
-
   return (
     <QueryClientProvider client={queryClient}>
       <div className="app-container">
