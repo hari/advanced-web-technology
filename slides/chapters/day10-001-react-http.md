@@ -169,3 +169,5 @@ layout: center
     </ul>
   </div>
 </div>
+
+> Check the related project for demo: https://advanced-web-technology.pages.dev/projects/react-intro/

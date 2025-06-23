@@ -12,6 +12,7 @@ import QuoteStream from './components/QuoteStream.jsx';
 import QuoteSocket from './components/QuoteSocket.jsx';
 import Practice from './components/Practice.jsx';
 import NotesApp from './NotesApp.jsx';
+import Form from './MultiStepForm';
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,8 @@ const examples = {
   example6: { name: '6: SSE Stream', component: QuoteStream },
   example7: { name: '7: WebSockets', component: QuoteSocket },
   practice: { name: 'Practice', component: Practice },
+  notes: { name: 'Thinking in React', component: NotesApp },
+  form: { name: 'Form Demo', component: Form },
 };
 
 function App() {

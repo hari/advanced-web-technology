@@ -130,10 +130,6 @@ export default function NotesApp() {
   const [activeFolder, setActiveFolder] = useState(null);
   const [activeNote, setActiveNote] = useState(null);
 
-  useEffect(() => {
-    setActiveNote(null);
-  }, [activeFolder?.id]);
-
   return (
     <section
       style={{
@@ -144,7 +140,10 @@ export default function NotesApp() {
       <FolderList
         folders={sampleFolders}
         activeFolder={activeFolder}
-        setActiveFolder={setActiveFolder}
+        setActiveFolder={(folder) => {
+          setActiveFolder(folder);
+          setActiveNote(null);
+        }}
       />
 
       <NotesList

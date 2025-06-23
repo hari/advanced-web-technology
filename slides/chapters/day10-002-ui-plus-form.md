@@ -488,3 +488,4 @@ layout: center
 ✅ Use the right APIs for the job  
 ✅ Consider advanced patterns
 
+> Check the related project for demo: https://advanced-web-technology.pages.dev/react-intro/
